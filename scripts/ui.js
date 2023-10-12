@@ -1,4 +1,7 @@
+import { buttonData } from "./constants.js";
 import { menuList } from "../app.js";
+
+const buttonArea = document.getElementById("buttons");
 
 export function renderMenuItems(data) {
   //dizdeki her bir eleman için bir item oluşturup ekrana basacak.
@@ -21,4 +24,32 @@ export function renderMenuItems(data) {
       </a>`
     )
     .join(" "); //map arraye aktarıyor bunları yapıştırıp dizi yapıyoruz.
+}
+
+// ekrana butonları basar
+export function renderButtons(activeText) {
+  // eski eklenen butonları html'den temizle
+  buttonArea.innerHTML = "";
+
+  // yeni butonları oluşturma
+  buttonData.forEach((btn) => {
+    // button elementi oluşturma
+    const buttonEle = document.createElement("button");
+
+    // class belirleme
+    buttonEle.className = "btn btn-outline-dark";
+
+    // data-id belirleme
+    buttonEle.dataset.category = btn.value;
+
+    // eğerki eleman aktifse bu klası ver
+    if (btn.text === activeText) {
+      buttonEle.classList.add("btn-dark", "text-white");
+    }
+
+    // içindeki yazıyı belirleme
+    buttonEle.innerText = btn.text;
+    // butonu html'e gönderme
+    buttonArea.appendChild(buttonEle);
+  });
 }
