@@ -7,9 +7,9 @@ export function renderMenuItems(data) {
   //dizdeki her bir eleman için bir item oluşturup ekrana basacak.
   menuList.innerHTML = data
     .map(
-      (
-        item
-      ) => `<a id="card" href="#" class="d-flex flex-column flex-md-row text-decoration-none text-dark gap-3"
+      (item) => `<a id="card"  href="./detail.html?id=${
+        item.id
+      }" class="d-flex flex-column flex-md-row text-decoration-none text-dark gap-3"
       >
         <img class="rounded shadow img-fluid" src="${item.img}" />
         <div>
@@ -28,7 +28,7 @@ export function renderMenuItems(data) {
 
 // ekrana butonları basar
 export function renderButtons(activeText) {
-  // eski eklenen butonları html'den temizle
+  // eski eklenen butonları html'den temizle yoksa her çağırıldıgında aynılarını yine yazar onlarca button olur ekranda
   buttonArea.innerHTML = "";
 
   // yeni butonları oluşturma
